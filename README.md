@@ -52,6 +52,16 @@ val MyViewModelProvider = Provider {
     scoped { MyViewModel(httpClient) }
 }
 
+val MyViewModelProvider = {
+    val httpClient = HttpClientProvider.get()
+    scoped { MyViewModel(httpClient) }
+}
+
+val MyViewModelProvider = { id: Int ->
+    val httpClient = HttpClientProvider.get()
+    scoped(key1 = id) { MyViewModel(id, httpClient) }
+}
+
 // Previous example
 class MainActivity : ComponentActivity() {
 
