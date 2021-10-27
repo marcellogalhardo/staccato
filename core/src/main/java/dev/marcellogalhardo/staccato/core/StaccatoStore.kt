@@ -2,7 +2,6 @@ package dev.marcellogalhardo.staccato.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import java.util.*
 import kotlin.reflect.KClass
 
@@ -27,8 +26,7 @@ internal class StaccatoStore constructor(
         key3: String? = null,
         instantiate: () -> T,
     ): T {
-        val name = rememberSaveable { UUID.randomUUID().toString() }
-        val id = remember { Id(name, type, key1, key2, key3) }
+        val id = remember { Id(type, key1, key2, key3) }
         return instances.getOrPut(id) { instantiate() } as T
     }
 
@@ -37,7 +35,6 @@ internal class StaccatoStore constructor(
     }
 
     data class Id(
-        val name: String,
         val type: KClass<*>,
         val key1: String?,
         val key2: String?,

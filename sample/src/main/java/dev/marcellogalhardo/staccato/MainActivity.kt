@@ -11,12 +11,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import dev.marcellogalhardo.staccato.core.Provider
 import dev.marcellogalhardo.staccato.core.StaccatoConfigurations
 import dev.marcellogalhardo.staccato.core.StaccatoHost
 import dev.marcellogalhardo.staccato.core.StaccatoScope
 import dev.marcellogalhardo.staccato.core.scoped
+import dev.marcellogalhardo.staccato.core.singleton
 import dev.marcellogalhardo.staccato.ui.theme.StaccatoTheme
+
+val screenToggleProvider = @Composable {
+    singleton { mutableStateOf(true) }
+}
+
+val counterProvider = @Composable {
+    scoped { mutableStateOf(1) }
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +36,11 @@ class MainActivity : ComponentActivity() {
                         isChangingConfigurations = { isChangingConfigurations }
                     )
                 ) {
-                    var screenToggle by scoped { mutableStateOf(true) }
+                    val screenToggle: Boolean by screenToggleProvider.invoke()
                     if (screenToggle) {
-                        Counter("First", "Second") { screenToggle = false }
+                        Counter("First", "Second")
                     } else {
-                        Counter("Second", "First") { screenToggle = true }
+                        Counter("Second", "First")
                     }
                 }
             }
@@ -41,9 +49,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Counter(name: String, other: String, onButtonClicked: () -> Unit) {
+fun Counter(name: String, other: String) {
     StaccatoScope {
-        var counter by scoped { mutableStateOf(1) }
+        var screenToggle: Boolean by screenToggleProvider.invoke()
+        var counter: Int by counterProvider.invoke()
         Column {
             Text(text = "$name Screen, Counter: $counter")
             Button(onClick = { counter++ }) {
@@ -52,7 +61,7 @@ fun Counter(name: String, other: String, onButtonClicked: () -> Unit) {
             Button(onClick = { counter-- }) {
                 Text(text = "Counter--")
             }
-            Button(onClick = onButtonClicked) {
+            Button(onClick = { screenToggle = !screenToggle }) {
                 Text(text = "Go to $other")
             }
         }
