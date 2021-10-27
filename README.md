@@ -2,6 +2,8 @@
 
 A lightweight state management library for Compose Multiplatform.
 
+**This project is currently experimental and the API subject to breaking changes without notice.**
+
 ## Basic Usage
 
 ```kotlin
