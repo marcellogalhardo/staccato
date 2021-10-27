@@ -1,6 +1,8 @@
 package dev.marcellogalhardo.staccato.core
 
 import androidx.compose.runtime.staticCompositionLocalOf
+import dev.marcellogalhardo.staccato.core.internal.StaccatoConfigurations
+import dev.marcellogalhardo.staccato.core.internal.StaccatoStore
 
 @PublishedApi
 internal val LocalStaccatoRootStore = staticCompositionLocalOf<StaccatoStore> {

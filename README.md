@@ -38,9 +38,9 @@ Note that configuration changes will not affect the `httpClient` nor `viewModel`
 
 - `singleton`: retains it with the `StaccatoHost` (single instance).
 - `scoped`: retains it with the parent `StaccatoScope`.
-- `reusable`: similar to `singleton` but can be removed from memory if not in use.
+- `reusable` (TODO): similar to `singleton` but can be removed from memory if not in use.
 
-## Advanced Usage: Providers
+## Advanced Usage: Providers (TODO)
 
 ```kotlin
 val HttpClientProvider = Provider {
@@ -80,7 +80,7 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-## Advanced Usage: Navigation Integration
+## Advanced Usage: Navigation Integration (TODO)
 
 ```kotlin
 @Composable
@@ -110,7 +110,7 @@ val MyViewModelProvider = Provider {
 }
 ```
 
-## Advanced Usage: Closeable
+## Advanced Usage: Closeable (TODO)
 
 ```kotlin
 val MyViewModelProvider = Provider {
@@ -121,12 +121,12 @@ val MyViewModelProvider = Provider {
 
 Note that if `MyViewModel` implements `Closeable`, it will be automatically invoked.
 
-## Testing with Providers
+## Testing with Providers (TODO)
 
 ```kotlin
 @Before
 fun setUp() {
-    HttpClientProvider.mock {
+    HttpClientProvider.replace {
         // Creates fake version of HttpClient or whatever.
     }
     // Now `HttpClientProvider` will always return the return you choose.

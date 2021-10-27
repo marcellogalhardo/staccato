@@ -2,30 +2,25 @@ package dev.marcellogalhardo.staccato.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-
-@PublishedApi
-internal lateinit var STACCATO_ENGINE: StaccatoEngine
-
-@PublishedApi
-internal class StaccatoEngine {
-    val store = StaccatoStore()
-}
+import androidx.compose.runtime.remember
+import dev.marcellogalhardo.staccato.core.internal.StaccatoConfigurations
+import dev.marcellogalhardo.staccato.core.internal.StaccatoEngine
 
 @Composable
 fun StaccatoHost(
-    configurations: StaccatoConfigurations = StaccatoConfigurations(),
+    isChangingConfigurations: () -> Boolean = { false },
     content: @Composable () -> Unit,
 ) {
-    if (!::STACCATO_ENGINE.isInitialized) {
-        STACCATO_ENGINE = StaccatoEngine()
+    val configurations = remember {
+        StaccatoConfigurations(isChangingConfigurations)
     }
-
+    val engine = StaccatoEngine.INSTANCE
     CompositionLocalProvider(
         LocalStaccatoConfigurations provides configurations,
-        LocalStaccatoRootStore provides STACCATO_ENGINE.store,
+        LocalStaccatoRootStore provides engine.singletonStore,
     ) {
-        OnClearedHandler(STACCATO_ENGINE) {
-            STACCATO_ENGINE.store.clear()
+        OnClearedHandler(engine) {
+            engine.singletonStore.clear()
         }
 
         StaccatoScope {

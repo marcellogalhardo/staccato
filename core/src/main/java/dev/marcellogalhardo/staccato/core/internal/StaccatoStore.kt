@@ -1,8 +1,7 @@
-package dev.marcellogalhardo.staccato.core
+package dev.marcellogalhardo.staccato.core.internal
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import java.util.*
 import kotlin.reflect.KClass
 
 @PublishedApi

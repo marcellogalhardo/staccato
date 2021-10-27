@@ -12,8 +12,7 @@ inline fun <reified T : Any> scoped(
     saver: Saver<T, T>? = null,
     noinline instantiate: () -> T,
 ): T {
-    val instance = LocalStaccatoScopedStore.current
-        .getOrCreate(T::class, key1, key2, key3, instantiate)
+    val instance = LocalStaccatoScopedStore.current.getOrCreate(key1, key2, key3, instantiate)
     if (saver != null) rememberSaveable(saver = saver) { instance }
     return instance
 }
@@ -26,8 +25,7 @@ inline fun <reified T : Any> singleton(
     saver: Saver<T, T>? = null,
     noinline instantiate: () -> T,
 ): T {
-    val instance = LocalStaccatoRootStore.current
-        .getOrCreate(T::class, key1, key2, key3, instantiate)
+    val instance = LocalStaccatoRootStore.current.getOrCreate(key1, key2, key3, instantiate)
     if (saver != null) rememberSaveable(saver = saver) { instance }
     return instance
 }

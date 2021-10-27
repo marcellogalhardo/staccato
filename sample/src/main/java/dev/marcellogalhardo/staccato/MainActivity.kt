@@ -11,7 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
-import dev.marcellogalhardo.staccato.core.StaccatoConfigurations
 import dev.marcellogalhardo.staccato.core.StaccatoHost
 import dev.marcellogalhardo.staccato.core.StaccatoScope
 import dev.marcellogalhardo.staccato.core.scoped
@@ -32,9 +31,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             StaccatoTheme {
                 StaccatoHost(
-                    configurations = StaccatoConfigurations(
-                        isChangingConfigurations = { isChangingConfigurations }
-                    )
+                    isChangingConfigurations = { isChangingConfigurations }
                 ) {
                     val screenToggle: Boolean by screenToggleProvider.invoke()
                     if (screenToggle) {
