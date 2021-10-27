@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
 
 ## Advanced Usage: Navigation Integration
 
-```
+```kotlin
 @Composable
 private fun NavRouting() {
     val navController = rememberNavController()
@@ -90,7 +90,7 @@ private fun NavRouting() {
 
 ## Testing with Providers
 
-```
+```kotlin
 @Before
 fun setUp() {
     HttpClientProvider.mock {
