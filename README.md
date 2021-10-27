@@ -40,7 +40,7 @@ Note that configuration changes will not affect the `httpClient` nor `viewModel`
 - `scoped`: retains it with the parent `StaccatoScope`.
 - `reusable`: similar to `singleton` but can be removed from memory if not in use.
 
-## Advanced Usage
+## Advanced Usage: Providers
 
 ```kotlin
 val HttpClientProvider = Provider {
