@@ -2,6 +2,8 @@
 
 A lightweight state management library for Compose Multiplatform.
 
+> The term staccato (pronounced "stuh-caw-toe") means detached, or separated, notes . Staccato notes have space, or silence, between them. There are different degrees of staccato notes.
+
 **This project is currently experimental and the API subject to breaking changes without notice.**
 
 ## Download
