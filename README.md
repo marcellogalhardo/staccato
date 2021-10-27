@@ -88,6 +88,27 @@ private fun NavRouting() {
 }
 ```
 
+## Advanced Usage: Process Death
+
+```kotlin
+val MyViewModelProvider = Provider {
+    val httpClient = HttpClientProvider.get()
+    val saver = MyViewModelSaver()
+    scoped(saver) { MyViewModel(httpClient) }
+}
+```
+
+## Advanced Usage: Closeable
+
+```kotlin
+val MyViewModelProvider = Provider {
+    val httpClient = HttpClientProvider.get()
+    scoped(onClose = { vm -> vm.close() }) { MyViewModel(httpClient) }
+}
+```
+
+Note that if `MyViewModel` implements `Closeable`, it will be automatically invoked.
+
 ## Testing with Providers
 
 ```kotlin
