@@ -32,6 +32,12 @@ class MainActivity : ComponentActivity() {
 
 Note that configuration changes will not affect the `httpClient` nor `viewModel` instances.
 
+### Supported Retentions
+
+- `singleton`: retains it with the `StaccatoHost` (single instance).
+- `scoped`: retains it with the parent `StaccatoScope`.
+- `reusable`: similar to `singleton` but can be removed from memory if not in use.
+
 ## Advanced Usage
 
 ```kotlin
@@ -49,8 +55,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val isChangingConfigurations = { isChangingConfigurations }
         setContent {
-            StaccatoHost(isChangingConfigurations = { this@MainActivity.isChangingConfigurations }) {
+            StaccatoHost(isChangingConfigurations) {
                 StaccatoScope {
                     val viewModel = MyViewModelProvider.get()
                     Component1(viewModel) // renders the UI.
@@ -59,10 +66,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 ```
 
-## Navigation Integration
+## Advanced Usage: Navigation Integration
 
 ```
 @Composable
@@ -82,14 +88,14 @@ private fun NavRouting() {
 }
 ```
 
-## Testing
+## Testing with Providers
 
 ```
 @Before
 fun setUp() {
-    HttpClientProvider.stub {
-        // Creates fake version of HttpClient.
+    HttpClientProvider.mock {
+        // Creates fake version of HttpClient or whatever.
     }
-    // Now ViewModel can run normally in the instrumentation tests.
+    // Now `HttpClientProvider` will always return the return you choose.
 }
 ```
