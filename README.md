@@ -59,26 +59,16 @@ Note that configuration changes will not affect the `httpClient` nor `viewModel`
 - `retainInHost`: retains it with the `StaccatoHost` (single instance per host).
 - `retainInScope`: retains it with the parent `StaccatoScope` (one instance per scope, multiple per host).
 
-## Advanced Usage: Providers (TODO)
+## Advanced Usage: Providers
 
 ```kotlin
 val HttpClientProvider = Provider {
-    singleton { HttpClient() }
+    retainInHost { HttpClient() }
 }
 
 val MyViewModelProvider = Provider {
     val httpClient = HttpClientProvider.get()
-    scoped { MyViewModel(httpClient) }
-}
-
-val MyViewModelProvider = {
-    val httpClient = HttpClientProvider.get()
-    scoped { MyViewModel(httpClient) }
-}
-
-val MyViewModelProvider = { id: Int ->
-    val httpClient = HttpClientProvider.get()
-    scoped(key1 = id) { MyViewModel(id, httpClient) }
+    retainInScope { MyViewModel(httpClient) }
 }
 
 // Previous example
