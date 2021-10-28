@@ -1,4 +1,4 @@
-package dev.marcellogalhardo.staccato.core
+package dev.marcellogalhardo.staccato.core.internal
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import dev.marcellogalhardo.staccato.core.internal.StaccatoConfigurations

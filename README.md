@@ -17,7 +17,8 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.marcellogalhardo:staccato:Tag'
+    implementation 'com.github.marcellogalhardo:staccato-core:Tag'
+    implementation 'com.github.marcellogalhardo:staccato-navigation:Tag'
 }
 ```
 
@@ -55,9 +56,8 @@ Note that configuration changes will not affect the `httpClient` nor `viewModel`
 
 ### Supported Retentions
 
-- `singleton`: retains it with the `StaccatoHost` (single instance).
-- `scoped`: retains it with the parent `StaccatoScope`.
-- `reusable` (TODO): similar to `singleton` but can be removed from memory if not in use.
+- `retainInHost`: retains it with the `StaccatoHost` (single instance per host).
+- `retainInScope`: retains it with the parent `StaccatoScope` (one instance per scope, multiple per host).
 
 ## Advanced Usage: Providers (TODO)
 
@@ -99,7 +99,7 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-## Advanced Usage: Navigation Integration (TODO)
+## Advanced Usage: Navigation Integration
 
 ```kotlin
 @Composable

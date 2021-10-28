@@ -47,9 +47,11 @@ android {
 }
 
 dependencies {
+    implementation projects.core
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.navigation:navigation-compose:2.4.0-alpha10"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 }
 
@@ -60,7 +62,7 @@ afterEvaluate {
                 from components.release
 
                 groupId = 'dev.marcellogalhardo'
-                artifactId = 'staccato-core'
+                artifactId = 'staccato-navigation'
                 version = '0.0.1'
             }
         }

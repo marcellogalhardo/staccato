@@ -1,7 +1,8 @@
-package dev.marcellogalhardo.staccato.core
+package dev.marcellogalhardo.staccato.core.internal
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import dev.marcellogalhardo.staccato.core.internal.LocalStaccatoConfigurations
 
 @Composable
 internal fun OnClearedHandler(

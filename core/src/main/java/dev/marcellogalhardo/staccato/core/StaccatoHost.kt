@@ -3,6 +3,9 @@ package dev.marcellogalhardo.staccato.core
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
+import dev.marcellogalhardo.staccato.core.internal.LocalStaccatoConfigurations
+import dev.marcellogalhardo.staccato.core.internal.LocalStaccatoRootStore
+import dev.marcellogalhardo.staccato.core.internal.OnClearedHandler
 import dev.marcellogalhardo.staccato.core.internal.StaccatoConfigurations
 import dev.marcellogalhardo.staccato.core.internal.StaccatoEngine
 
