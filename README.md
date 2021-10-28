@@ -17,8 +17,8 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.marcellogalhardo:staccato-core:Tag'
-    implementation 'com.github.marcellogalhardo:staccato-navigation:Tag'
+    implementation 'com.github.marcellogalhardo.staccato:staccato-core:Tag'
+    implementation 'com.github.marcellogalhardo.staccato:staccato-navigation:Tag'
 }
 ```
 
