@@ -2,6 +2,7 @@ package dev.marcellogalhardo.staccato.core.internal
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import java.io.Closeable
 import kotlin.reflect.KClass
 
 @PublishedApi
@@ -30,6 +31,9 @@ internal class StaccatoStore constructor(
     }
 
     fun clear() {
+        instances.values.filterIsInstance<Closeable>().forEach { closeable ->
+            closeable.close()
+        }
         instances.clear()
     }
 
