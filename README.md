@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 StaccatoScope {
                     // Creates a ViewModel inside the `StaccatoScope`
                     // if the scope is disposed, so is the ViewModel.
-                    val viewModel = scoped { MyViewModel1(httpClient) }
+                    val viewModel = retainInScope { MyViewModel1(httpClient) }
                     Component1(viewModel) // renders the UI.
                 }
             }
